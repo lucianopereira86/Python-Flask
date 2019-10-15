@@ -69,8 +69,8 @@ http://127.0.0.1:5000/
 
 ### GET
 
-Now, let's change our route to be used as a regular web API.
-Create a dictionary called _users_ and return it when happens a GET method request:
+Now, let's change our route to be used as a regular web API.  
+Create a dictionary called \_users_dict to be returned after a GET request:
 
 ![flask04](/docs/flask04.JPG)
 
