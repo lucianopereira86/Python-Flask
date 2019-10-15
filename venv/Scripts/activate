@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\luxcl\Desktop\Github\Projetos\Python-Flask\dev\venv"
+VIRTUAL_ENV="C:\Users\luxcl\Desktop\Github\Projetos\Python-Flask\repo\Python-Flask\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

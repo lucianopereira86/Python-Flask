@@ -12,6 +12,8 @@ This [article](https://programminghistorian.org/en/lessons/creating-apis-with-py
 
 - [venv](#venv)
 - [Flask](#flask)
+  - [GET](#get)
+  - [POST](#post)
 
 ### venv
 
@@ -65,6 +67,8 @@ http://127.0.0.1:5000/
 
 ![flask03](/docs/flask03.JPG)
 
+### GET
+
 Now, let's change our route to be used as a common web API.
 Create a dictionary called _users_ and return it when happens a GET method request:
 
@@ -101,3 +105,33 @@ http://127.0.0.1:5000/user/1
 ```
 
 ![flask09](/docs/flask09.JPG)
+
+### POST
+
+To simulate a POST request, let's remove all dictionaries from _users_dict_:
+
+![flask10](/docs/flask10.JPG)
+
+Create a POST method with the following code:
+
+![flask11](/docs/flask11.JPG)
+
+Execute a POST request sending a new user. I've chosen [Postman](https://www.getpostman.com/) to make the request:
+
+![flask12](/docs/flask12.JPG)
+
+The result will be:
+
+![flask13](/docs/flask13.JPG)
+
+We have added a new user to the _user_dict_. Let's make some changes at the _get_users_ function to search for the user by using multiple properties dynamically, even considering their types.
+
+![flask14](/docs/flask14.JPG)
+
+This way we have many possible queries with the same method:
+
+![flask15](/docs/flask15.JPG)
+
+![flask16](/docs/flask16.JPG)
+
+![flask17](/docs/flask17.JPG)

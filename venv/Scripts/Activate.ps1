@@ -27,7 +27,7 @@ function global:deactivate ([switch]$NonDestructive) {
 
 deactivate -nondestructive
 
-$env:VIRTUAL_ENV="C:\Users\luxcl\Desktop\Github\Projetos\Python-Flask\dev\venv"
+$env:VIRTUAL_ENV="C:\Users\luxcl\Desktop\Github\Projetos\Python-Flask\repo\Python-Flask\venv"
 
 if (! $env:VIRTUAL_ENV_DISABLE_PROMPT) {
     # Set the prompt to include the env name
