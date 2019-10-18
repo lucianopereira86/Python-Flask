@@ -11,9 +11,13 @@ This [article](https://programminghistorian.org/en/lessons/creating-apis-with-py
 ## Topics
 
 - [venv](#venv)
-- [Flask](#flask)
-  - [GET](#get)
-  - [POST](#post)
+- [API](#api)
+- [GET](#get)
+- [POST](#post)
+- [PUT](#put)
+- [DELETE](#delete)
+- [Database Connection](#database-connection)
+- [Database Operations](#database-operations)
 
 ### venv
 
@@ -43,7 +47,7 @@ The result will be:
 
 ![venv02](/docs/venv02.JPG)
 
-## Flask
+### API
 
 Create a folder called _api_ with a file called _api.py_. Inside the file, write this code:
 
@@ -135,3 +139,81 @@ This way we have many possible queries with the same method:
 ![flask16](/docs/flask16.JPG)
 
 ![flask17](/docs/flask17.JPG)
+
+### PUT
+
+To update a user, create this method:
+
+![flask18](/docs/flask18.JPG)
+
+Execute a PUT request:
+
+![flask19](/docs/flask19.JPG)
+
+Run another query to see the result:
+
+![flask20](/docs/flask20.JPG)
+
+### DELETE
+
+To delete a user by id, write this code:
+
+![flask21](/docs/flask21.JPG)
+
+Execute a DELETE request:
+
+![flask22](/docs/flask22.JPG)
+
+Run another query to see the result:
+
+![flask23](/docs/flask23.JPG)
+
+## Database Connection
+
+It's time to finally connect with a database to persist the data.  
+Create another Python file inside the _api_ folder called _db_api_ and write the functions below:
+
+- Creates the database
+
+![flask24](/docs/flask24.JPG)
+
+- Creates tables
+
+![flask25](/docs/flask25.JPG)
+
+- Starts the database. Must be called before _app.run()_.
+
+![flask26](/docs/flask26.JPG)
+
+- Dictionary factory and cursor
+
+![flask27](/docs/flask27.JPG)
+
+Finally, run the following command:
+
+```bash
+python .\api\db_api.py
+
+```
+
+The _test.db_ is created inside the _api_ folder and contains the _user_ table:
+
+![flask28](/docs/flask28.JPG)
+
+### Database Operations
+
+- POST
+
+![flask29](/docs/flask29.JPG)
+
+- GET
+
+![flask30](/docs/flask30.JPG)
+
+- PUT
+
+![flask31](/docs/flask31.JPG)
+
+- DELETE
+
+![flask32](/docs/flask32.JPG)
