@@ -14,6 +14,10 @@ In this project you will learn how to create a web API in Python, make requests 
 - [Flask](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#lesson-goals)
 - [PyMySQL](https://pymysql.readthedocs.io/en/latest/index.html)
 
+## Before Start
+
+If you are new to Python, read these articles to get started: [Python for Beginners](https://dev.to/lucianopereira86/python-for-beginners-part-1-hello-world-19ed).
+
 ## Topics
 
 - [venv](#venv)
