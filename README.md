@@ -141,6 +141,10 @@ The result will be:
 
 We have added a new user to the _users_dict_. Let's make some changes at the _get_users_ function to search for the user by using multiple properties dynamically, even by considering their types.
 
+| Don't forget to run the POST request every time you save the project because the _users_dict_ will be resetted! |
+| --------------------------------------------------------------------------------------------------------------- |
+
+
 ![flask14](/docs/flask14.JPG)
 
 This way we have many possible queries with the same method:
