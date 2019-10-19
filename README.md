@@ -139,7 +139,7 @@ The result will be:
 
 ![flask13](/docs/flask13.JPG)
 
-We have added a new user to the _user_dict_. Let's make some changes at the _get_users_ function to search for the user by using multiple properties dynamically, even considering their types.
+We have added a new user to the _users_dict_. Let's make some changes at the _get_users_ function to search for the user by using multiple properties dynamically, even by considering their types.
 
 ![flask14](/docs/flask14.JPG)
 
