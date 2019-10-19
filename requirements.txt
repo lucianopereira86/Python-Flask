@@ -1,4 +1,2 @@
 flask
-flasgger
-apispec
-apispec_webframeworks
+PyMySQL

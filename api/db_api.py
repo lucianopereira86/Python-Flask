@@ -2,32 +2,7 @@ import flask
 from flask import request, jsonify
 import sqlite3
 from sqlite3 import Error
-from flasgger.utils import swag_from
-from flasgger import APISpec, Schema, Swagger, fields
-from apispec.ext.marshmallow import MarshmallowPlugin
-from apispec_webframeworks.flask import FlaskPlugin
-
-
-# Create an APISpec
-spec = APISpec(
-    title='Flasgger User API',
-    version='1.0.0',
-    openapi_version='1.0',
-    plugins=[
-        FlaskPlugin(),
-        MarshmallowPlugin(),
-    ],
-)
-
-class UserCategorySchema(Schema):
-    id = fields.Int()
-    age = fields.Int()
-    name = fields.Str(required=True)
-
-class UserSchema(Schema):
-    category = fields.Nested(UserCategorySchema, many=True)
-    name = fields.Str()
-
+import pymysql.cursors
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -65,15 +40,31 @@ def dict_factory(cursor, row):
 
 
 def execute(sql, isSelect=True):
-    conn = sqlite3.connect(database)
-    conn.row_factory = dict_factory
-    cur = conn.cursor()
-    if isSelect:
-        return cur.execute(sql).fetchall()
-    else:
-        result = cur.execute(sql)
-        conn.commit()
-        return result
+    # LOCAL DATABASE
+    # conn = sqlite3.connect(database)
+    
+    # REMOTE DATABASE
+    conn = pymysql.connect(host='remotemysql.com',
+                            port=3306,
+                            user='<USER>',
+                            password='<PASSWORD>',
+                            db='<DATABASE>',
+                            charset='utf8mb4',
+                            cursorclass=pymysql.cursors.DictCursor)
+    result = None
+    try:
+        with conn.cursor() as cursor:
+            if isSelect:
+                cursor.execute(sql)
+                result = cursor.fetchall()
+                print(f"result = {result}")
+            else:
+                cursor.execute(sql)
+                result = conn.insert_id()
+                conn.commit()
+    finally:
+        conn.close()
+    return result
 
 
 def start_db():
@@ -103,8 +94,7 @@ def post_users():
 
     sql = f"INSERT INTO user (age, name) VALUES ({_age}, '{_name}');"
 
-    result = execute(sql, False)
-    user['id'] = result.lastrowid
+    user['id'] = execute(sql, False)
     return jsonify(user)
 
 # Update user
@@ -121,7 +111,6 @@ def put_users():
 
 # List all users
 @app.route('/users', methods=['GET'])
-@swag_from('yml/get.yml')
 def get_users():
 
     _id = request.args['id'] if 'id' in request.args else 0
@@ -135,7 +124,6 @@ def get_users():
 
     users = execute(sql)
     return jsonify(users)
-    # return UserSchema().dump(users).data
 
 # Delete user by id
 @app.route('/user/<_id>', methods=['DELETE'])
@@ -144,17 +132,7 @@ def delete_users(_id):
     execute(sql, False)
     return {}
 
-
-
-template = spec.to_flasgger(
-    app,
-    definitions=[UserCategorySchema, UserSchema],
-    paths=[get_users]
-)
-
-# start Flasgger using a template from apispec
-swag = Swagger(app, template=template)
-
-start_db()
+# LOCAL DATABASE
+# start_db()
 
 app.run()

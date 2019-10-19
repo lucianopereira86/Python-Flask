@@ -6,13 +6,13 @@ Creating a web API with Python and Flask.
 
 ## Objective
 
-In this project you will learn how to create a web API in Python, connect it with a database, make requests and integrate it with Swagger for a better interaction.
+In this project you will learn how to create a web API in Python, make requests and connect it with a local and a remote database.
 
 ## Technologies
 
-- Python
-- Flask
-- Flasgger
+- [Python](https://www.python.org/)
+- [Flask](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#lesson-goals)
+- [PyMySQL](https://pymysql.readthedocs.io/en/latest/index.html)
 
 ## Topics
 
@@ -22,9 +22,8 @@ In this project you will learn how to create a web API in Python, connect it wit
 - [POST](#post)
 - [PUT](#put)
 - [DELETE](#delete)
-- [Database Connection](#database-connection)
-- [Database Operations](#database-operations)
-- [Swagger](#swagger)
+- [Local Database](#local-database)
+- [Remote Database](#remote-database)
 
 ### venv
 
@@ -175,7 +174,7 @@ Run another query to see the result:
 
 ![flask23](/docs/flask23.JPG)
 
-## Database Connection
+### Local Database
 
 It's time to finally connect with a database to persist the data.  
 Create another Python file inside the _api_ folder called _db_api_ and write this code:
@@ -211,8 +210,6 @@ The _test.db_ will be created inside the _api_ folder and will contain the _user
 
 ![flask28](/docs/flask28.JPG)
 
-### Database Operations
-
 Copy and modify the HTTP functions from _api.py_ to _db_api.py_.
 
 - POST
@@ -231,89 +228,74 @@ Copy and modify the HTTP functions from _api.py_ to _db_api.py_.
 
 ![flask32](/docs/flask32.JPG)
 
-### Swagger
+### Remote Database
 
-Instead of using a web browser and Postman, let's improve our interaction with the web API by using Swagger, a web page that allows user interaction and documentation. First, follow these steps:
+Let's connect with a remote MySQL database now.  
+Follow the instructions in this [article](https://dev.to/lucianopereira86/net-core-web-api-part-2-mysql-3bje) or in this [repository](https://github.com/lucianopereira86/NetCore3-MySQL) to create a database and get the connection string.  
+If you followed them correctly, you must have a _user_ table in your remote database. Change it by adding a column named _age_.  
+This is an easy script to do it:
 
-- Delete the _venv_ folder.
-- Reopen the VSCode.
-- Edit the _requirements.txt_ by adding a line with _flasgger_.
-- Recreate the [venv](#venv).
+```batch
+ALTER TABLE user ADD age INT NOT NULL;
+```
 
-Inside the _api_ folder, create a folder named _yml_ containing the _get.yml_ file:
+Now, return to VSCode, add _PyMySQL_ into the _requirements.txt_ and install it by running:
+
+```batch
+pip install -r requirements.txt
+```
+
+Inside the _db_api.py_, import the _PyMySQL_ package:
+
+```batch
+import pymysql.cursors
+```
+
+Comment the _start_db_ function because it won't be needed anymore:
 
 ![flask33](/docs/flask33.JPG)
 
-The following code presents the input parameters and the expected output from the GET method.  
-Put it inside the _get.yml_.
-
-```batch
-List all users
-Send the parameters _id_, _age_ and _name_.
----
-tags:
-  - List Users
-parameters:
-  - name: id
-    in: query
-    type: integer
-    description: the user id
-  - name: age
-    in: query
-    type: integer
-    description: the user age
-  - name: name
-    in: query
-    type: string
-    description: the username
-responses:
-  500:
-    description: Internal Server Error
-  200:
-    description: Success
-    schema:
-      type: array
-      items:
-        id: user
-        properties:
-          id:
-          type: integer
-            description: the user id
-            default: 1
-          age:
-            type: integer
-            description: the user id
-            default: 33
-          name:
-            type: string
-            description: the user name
-            default: Luciano
-
-```
-
-Import _flasgger_ inside of _db_api.py_:
-
-```bash
-from flasgger import Swagger
-from flasgger.utils import swag_from
-```
-
-Change the GET method to receive the Swagger documentation by adding the _swag_from_ decorator:
+Modify the _execute_ function to receive the MySQL connection by adding the connection string:
 
 ![flask34](/docs/flask34.JPG)
 
-Run the API and access this URL:
+Now, run the API again:
 
-```batch
-http://localhost:5000/apidocs/index.html
+```bash
+python .\api\db_api.py
+
 ```
 
-The _flagger_ page will be accessible:
+Make a GET request to the _get_users_ function. The result will be something like this:
 
-![flask35](/docs/flask35.JPG)
+![flask38](/docs/flask38.JPG)
 
-## References
+Make a POST request to create another user:
 
-Flask: [https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#lesson-goal](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#lesson-goals).
+![flask39](/docs/flask39.JPG)
 
-Flasgger: [http://brunorocha.org/python/flask/flasgger-api-playground-with-flask-and-swagger-ui.html](http://brunorocha.org/python/flask/flasgger-api-playground-with-flask-and-swagger-ui.html).
+Another GET request and the result will be:
+
+![flask40](/docs/flask40.JPG)
+
+Modify the age from your new user with a PUT request:
+
+![flask41](/docs/flask41.JPG)
+
+Check it out:
+
+![flask42](/docs/flask42.JPG)
+
+Delete another user:
+
+![flask43](/docs/flask43.JPG)
+
+And... it is gone!
+
+![flask44](/docs/flask44.JPG)
+
+## Conclusion
+
+In this great project we have seen how a web API behaves in a Python environment with Flask framework.  
+During our tests, we have used runtime variables (_api.py_) and persistent data (\_db_api.py).  
+The local and remote database had similar functions, equal results and were easy to manipulate.
