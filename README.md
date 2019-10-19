@@ -238,7 +238,13 @@ Instead of using a web browser and Postman, let's improve our interaction with t
 - Delete the _venv_ folder.
 - Reopen the VSCode.
 - Edit the _requirements.txt_ by adding a line with _flasgger_.
-- Recreate the [venv](#venv).
+- Recreate the _venv_ with these commands:
+
+```bash
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
 
 Inside the _api_ folder, create a folder named _yml_ containing the _get.yml_ file:
 
