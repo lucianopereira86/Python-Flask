@@ -31,7 +31,7 @@ If you are new to Python, read these articles to get started: [Python for Beginn
 
 ### venv
 
-Execute the command below to create a virtual environment (venv):
+Create a folder for your project, open VSCode and execute the command below to create a virtual environment (venv):
 
 ```bash
 python -m venv venv
