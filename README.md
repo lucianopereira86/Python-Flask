@@ -10,6 +10,7 @@ In this project you will learn how to create a web API in Python, make requests 
 
 ## Technologies
 
+- [VSCode](https://code.visualstudio.com/)
 - [Python](https://www.python.org/)
 - [Flask](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#lesson-goals)
 - [PyMySQL](https://pymysql.readthedocs.io/en/latest/index.html)
