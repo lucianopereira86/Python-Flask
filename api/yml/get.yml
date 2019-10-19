@@ -1,0 +1,40 @@
+List all users
+Send the parameters _id_, _age_ and _name_.
+---
+tags:
+  - List Users
+parameters:
+  - name: id
+    in: query
+    type: integer
+    description: the user id
+  - name: age
+    in: query
+    type: integer
+    description: the user age
+  - name: name
+    in: query
+    type: string
+    description: the username
+responses:
+  500:
+    description: Internal Server Error
+  200:
+    description: Success
+    schema:
+      type: array
+      items:
+        id: user
+        properties:
+          id:
+          type: integer
+            description: the user id
+            default: 1
+          age:
+            type: integer
+            description: the user id
+            default: 33
+          name:
+            type: string
+            description: the user name
+            default: Luciano

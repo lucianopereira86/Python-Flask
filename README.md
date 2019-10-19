@@ -4,9 +4,15 @@
 
 Creating a web API with Python and Flask.
 
-## References
+## Objective
 
-This [article](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#lesson-goals) from the Programming Historian website explains very well how to use Python with Flask and is being used as reference for this project.
+In this project you will learn how to create a web API in Python, connect it with a database, make requests and integrate it with Swagger for a better interaction.
+
+## Technologies
+
+- Python
+- Flask
+- Flasgger
 
 ## Topics
 
@@ -18,6 +24,7 @@ This [article](https://programminghistorian.org/en/lessons/creating-apis-with-py
 - [DELETE](#delete)
 - [Database Connection](#database-connection)
 - [Database Operations](#database-operations)
+- [Swagger](#swagger)
 
 ### venv
 
@@ -74,7 +81,7 @@ http://127.0.0.1:5000/
 ### GET
 
 Now, let's change our route to be used as a regular web API.  
-Create a dictionary called \_users_dict to be returned after a GET request:
+Create a dictionary called _users_dict_ to be returned after a GET request:
 
 ![flask04](/docs/flask04.JPG)
 
@@ -171,7 +178,11 @@ Run another query to see the result:
 ## Database Connection
 
 It's time to finally connect with a database to persist the data.  
-Create another Python file inside the _api_ folder called _db_api_ and write the functions below:
+Create another Python file inside the _api_ folder called _db_api_ and write this code:
+
+![flask24_0](/docs/flask24_0.JPG)
+
+The functions below must be created as well:
 
 - Creates the database
 
@@ -181,13 +192,13 @@ Create another Python file inside the _api_ folder called _db_api_ and write the
 
 ![flask25](/docs/flask25.JPG)
 
-- Starts the database. Must be called before _app.run()_.
-
-![flask26](/docs/flask26.JPG)
-
-- Dictionary factory and cursor
+- Executes the operation
 
 ![flask27](/docs/flask27.JPG)
+
+- Starts the database. This function must be called before _app.run()_.
+
+![flask26](/docs/flask26.JPG)
 
 Finally, run the following command:
 
@@ -196,24 +207,113 @@ python .\api\db_api.py
 
 ```
 
-The _test.db_ is created inside the _api_ folder and contains the _user_ table:
+The _test.db_ will be created inside the _api_ folder and will contain the _user_ table:
 
 ![flask28](/docs/flask28.JPG)
 
 ### Database Operations
 
+Copy and modify the HTTP functions from _api.py_ to _db_api.py_.
+
 - POST
 
 ![flask29](/docs/flask29.JPG)
 
-- GET
+- PUT
 
 ![flask30](/docs/flask30.JPG)
 
-- PUT
+- GET
 
 ![flask31](/docs/flask31.JPG)
 
 - DELETE
 
 ![flask32](/docs/flask32.JPG)
+
+### Swagger
+
+Instead of using a web browser and Postman, let's improve our interaction with the web API by using Swagger, a web page that allows user interaction and documentation. First, follow these steps:
+
+- Delete the _venv_ folder.
+- Reopen the VSCode.
+- Edit the _requirements.txt_ by adding a line with _flasgger_.
+- Recreate the [venv](#venv).
+
+Inside the _api_ folder, create a folder named _yml_ containing the _get.yml_ file:
+
+![flask33](/docs/flask33.JPG)
+
+The following code presents the input parameters and the expected output from the GET method.  
+Put it inside the _get.yml_.
+
+```batch
+List all users
+Send the parameters _id_, _age_ and _name_.
+---
+tags:
+  - List Users
+parameters:
+  - name: id
+    in: query
+    type: integer
+    description: the user id
+  - name: age
+    in: query
+    type: integer
+    description: the user age
+  - name: name
+    in: query
+    type: string
+    description: the username
+responses:
+  500:
+    description: Internal Server Error
+  200:
+    description: Success
+    schema:
+      type: array
+      items:
+        id: user
+        properties:
+          id:
+          type: integer
+            description: the user id
+            default: 1
+          age:
+            type: integer
+            description: the user id
+            default: 33
+          name:
+            type: string
+            description: the user name
+            default: Luciano
+
+```
+
+Import _flasgger_ inside of _db_api.py_:
+
+```bash
+from flasgger import Swagger
+from flasgger.utils import swag_from
+```
+
+Change the GET method to receive the Swagger documentation by adding the _swag_from_ decorator:
+
+![flask34](/docs/flask34.JPG)
+
+Run the API and access this URL:
+
+```batch
+http://localhost:5000/apidocs/index.html
+```
+
+The _flagger_ page will be accessible:
+
+![flask35](/docs/flask35.JPG)
+
+## References
+
+Flask: [https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#lesson-goal](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#lesson-goals).
+
+Flasgger: [http://brunorocha.org/python/flask/flasgger-api-playground-with-flask-and-swagger-ui.html](http://brunorocha.org/python/flask/flasgger-api-playground-with-flask-and-swagger-ui.html).
