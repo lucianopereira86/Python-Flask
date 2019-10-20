@@ -59,4 +59,21 @@ def post_users():
     users_dict.append(user)
     return jsonify(user)
 
+# Update user
+@app.route('/user', methods=['PUT'])
+def put_users():
+    user = request.get_json()
+    for i, u in enumerate(users_dict):
+        if u['id'] == user['id']:
+            users_dict[i] = user
+    return {}
+
+# Delete user by id
+@app.route('/user/<id>', methods=['DELETE'])
+def delete_users(id):
+    for user in users_dict:
+        if user['id'] == int(id):
+            users_dict.remove(user)
+    return {}
+
 app.run()
