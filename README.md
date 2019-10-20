@@ -237,6 +237,8 @@ Copy and modify the HTTP functions from _api.py_ to _db_api.py_.
 
 ![flask32](/docs/flask32.JPG)
 
+Test each one and see the result.
+
 ### Remote Database
 
 Let's connect with a remote MySQL database now.  
