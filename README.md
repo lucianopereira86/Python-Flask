@@ -34,13 +34,13 @@ If you are new to Python, read these articles to get started: [Python for Beginn
 
 Create a folder for your project, open VSCode and execute the command below to create a virtual environment (venv):
 
-```powershell
+```pwsh
 python -m venv venv
 ```
 
 Confirm any popup that shows up and run the command below to use the _venv_:
 
-```powershell
+```pwsh
 .\venv\Scripts\Activate.ps1
 ```
 
@@ -50,7 +50,7 @@ Create a file named 'requirements.txt' containing the word _flask_.
 
 Install the _flask_ package inside the _venv_ with the following command:
 
-```powershell
+```pwsh
 pip install -r requirements.txt
 ```
 
@@ -66,7 +66,7 @@ Create a folder called _api_ with a file called _api.py_. Inside the file, write
 
 Run the following command:
 
-```powershell
+```pwsh
 python .\api\api.py
 
 ```
@@ -76,7 +76,7 @@ The result will be:
 
 If you follow the URL displayed you will see the web page running:
 
-```powershell
+```pwsh
 http://127.0.0.1:5000/
 ```
 
@@ -210,7 +210,7 @@ The functions below must be created as well:
 
 Finally, run the following command:
 
-```powershell
+```pwsh
 python .\api\db_api.py
 
 ```
@@ -252,7 +252,7 @@ ALTER TABLE user ADD age INT NOT NULL;
 
 Now, return to VSCode, add _PyMySQL_ into the _requirements.txt_ and install it by running:
 
-```powershell
+```pwsh
 pip install -r requirements.txt
 ```
 
@@ -272,7 +272,7 @@ Modify the _execute_ function to receive the MySQL connection by adding the conn
 
 Now, run the API again:
 
-```powershell
+```pwsh
 python .\api\db_api.py
 
 ```
