@@ -270,6 +270,10 @@ Modify the _execute_ function to receive the MySQL connection by adding the conn
 
 ![flask34](/docs/flask34.JPG)
 
+Change the _post_users_ function to receive the inserted id:
+
+![flask35](/docs/flask35.JPG)
+
 Now, run the API again:
 
 ```sh
