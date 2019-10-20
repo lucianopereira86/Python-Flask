@@ -312,5 +312,5 @@ And... it is gone!
 ## Conclusion
 
 In this great project we have seen how a web API behaves in a Python environment with Flask framework.  
-During our tests, we have used runtime variables (_api.py_) and persistent data (\_db_api.py).  
+During our tests, we have used runtime variables (_api.py_) and persistent data (_db_api.py_).  
 The local and remote database had similar functions, equal results and were easy to manipulate.
