@@ -258,7 +258,7 @@ pip install -r requirements.txt
 
 Inside the _db_api.py_, import the _PyMySQL_ package:
 
-```powershell
+```python
 import pymysql.cursors
 ```
 
