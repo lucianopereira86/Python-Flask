@@ -244,7 +244,7 @@ Test each one and see the result.
 Let's connect with a remote MySQL database now.  
 Follow the instructions in this [article](https://dev.to/lucianopereira86/net-core-web-api-part-2-mysql-3bje) or in this [repository](https://github.com/lucianopereira86/NetCore3-MySQL) to create a database and get the connection string.  
 If you followed them correctly, you must have a _user_ table in your remote database. Change it by adding a column named _age_.  
-This is an easy script to do it:
+Here is an easy script to do it:
 
 ```batch
 ALTER TABLE user ADD age INT NOT NULL;
