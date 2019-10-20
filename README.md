@@ -34,13 +34,13 @@ If you are new to Python, read these articles to get started: [Python for Beginn
 
 Create a folder for your project, open VSCode and execute the command below to create a virtual environment (venv):
 
-```bash
+```shell
 python -m venv venv
 ```
 
 Confirm any popup that shows up and run the command below to use the _venv_:
 
-```bash
+```shell
 .\venv\Scripts\Activate.ps1
 ```
 
@@ -50,7 +50,7 @@ Create a file named 'requirements.txt' containing the word _flask_.
 
 Install the _flask_ package inside the _venv_ with the following command:
 
-```bash
+```shell
 pip install -r requirements.txt
 ```
 
@@ -66,7 +66,7 @@ Create a folder called _api_ with a file called _api.py_. Inside the file, write
 
 Run the following command:
 
-```bash
+```shell
 python .\api\api.py
 
 ```
@@ -76,7 +76,7 @@ The result will be:
 
 If you follow the URL displayed you will see the web page running:
 
-```bash
+```shell
 http://127.0.0.1:5000/
 ```
 
@@ -91,7 +91,7 @@ Create a dictionary called _users_dict_ to be returned after a GET request:
 
 Access the URL below and see the result:
 
-```bash
+```
 http://127.0.0.1:5000/users
 ```
 
@@ -103,7 +103,7 @@ Let's create another method to return a user by id:
 
 Access the URL below and see the result:
 
-```bash
+```
 http://127.0.0.1:5000/user?id=1
 ```
 
@@ -115,7 +115,7 @@ Return a user by id passing the parameter in the path:
 
 Access the URL below and see the result:
 
-```bash
+```
 http://127.0.0.1:5000/user/1
 ```
 
@@ -210,7 +210,7 @@ The functions below must be created as well:
 
 Finally, run the following command:
 
-```bash
+```shell
 python .\api\db_api.py
 
 ```
@@ -246,19 +246,19 @@ Follow the instructions in this [article](https://dev.to/lucianopereira86/net-co
 If you followed them correctly, you must have a _user_ table in your remote database. Change it by adding a column named _age_.  
 Here is an easy script to do it:
 
-```batch
+```sql
 ALTER TABLE user ADD age INT NOT NULL;
 ```
 
 Now, return to VSCode, add _PyMySQL_ into the _requirements.txt_ and install it by running:
 
-```batch
+```shell
 pip install -r requirements.txt
 ```
 
 Inside the _db_api.py_, import the _PyMySQL_ package:
 
-```batch
+```shell
 import pymysql.cursors
 ```
 
@@ -272,7 +272,7 @@ Modify the _execute_ function to receive the MySQL connection by adding the conn
 
 Now, run the API again:
 
-```bash
+```shell
 python .\api\db_api.py
 
 ```
